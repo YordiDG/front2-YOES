@@ -1,44 +1,32 @@
-.user-dialog-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0; /* Ajustar a la parte superior derecha */
+.form-p1 {
+  font-family: 'Helvetica', Arial, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscurecido */
-  z-index: 9999;
+  margin-bottom: 20px;
 }
 
-.user-dialog {
-  display: none;
-  position: fixed;
-  top: 50%;
-  right: 50%; /* Ajustar a la parte superior derecha */
-  transform: translate(50%, -50%); /* Ajustar a la parte superior derecha */
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 10000;
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.user-dialog-container {
-  padding-left: 0; /* Eliminar el espacio a la izquierda de la lista */
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.user-dialog-container ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.user-dialog-container ul li {
-  margin-bottom: 10px;
-}
-
-.user-dialog-container ul li a {
-  color: #333333;
-  text-decoration: none;
-}
-
-.user-dialog-container ul li a:hover {
-  text-decoration: underline;
+button[type="submit"]:hover {
+  background-color: #0056b3;
 }

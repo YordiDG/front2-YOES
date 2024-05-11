@@ -17,10 +17,12 @@ import {RegisterAdminComponent} from "./public/pages/register-user/register-admi
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
 import {RegistroComponent} from "./public/registross/registro/registro.component";
 import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
+import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+/*{path: 'login', component: LoginComponent},*/
 /*{path: 'login', component: LoginComponent},*/
   {path: 'register', component: RegisterClientComponent},
   {path: 'telephone', component: TelephoneComponent},

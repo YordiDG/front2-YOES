@@ -22,7 +22,11 @@
 .toolbar a:hover{
   background-color: #f1eb7d;
 }
+.degradado-radial {
+  width: 200px; /* Ancho del contenedor */
+  height: 200px; /* Altura del contenedor */
 
+}
 .structure {
   display: flex;
   justify-content: center;
@@ -155,6 +159,9 @@ ul {
 }
 
 /* Estilos para la sección "Home" */
+/*  background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);*/
+
+
 #home {
   height: 80vh;
   background-image: url('https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg');

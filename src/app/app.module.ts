@@ -45,6 +45,8 @@ import { RegistroComponent } from './public/registross/registro/registro.compone
 import { TelephoneComponent } from './public/registross/telephone/telephone.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
     MatMenuModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
