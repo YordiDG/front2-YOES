@@ -1,0 +1,44 @@
+.user-dialog-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0; /* Ajustar a la parte superior derecha */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscurecido */
+  z-index: 9999;
+}
+
+.user-dialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 50%; /* Ajustar a la parte superior derecha */
+  transform: translate(50%, -50%); /* Ajustar a la parte superior derecha */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+.user-dialog-container {
+  padding-left: 0; /* Eliminar el espacio a la izquierda de la lista */
+}
+
+.user-dialog-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-dialog-container ul li {
+  margin-bottom: 10px;
+}
+
+.user-dialog-container ul li a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.user-dialog-container ul li a:hover {
+  text-decoration: underline;
+}

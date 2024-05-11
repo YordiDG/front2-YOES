@@ -1,0 +1,19 @@
+<div style="position: relative;">
+  <a mat-button style="border-radius: 0; border: none; background-color: transparent; position: relative;" (click)="showUserDialog()">
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" style="width: 4em; margin-top: -15px; margin-left: 22px" alt="">
+  </a>
+
+  <div class="user-dialog-overlay" *ngIf="showDialog" (click)="hideUserDialog()"></div>
+  <div class="user-dialog" *ngIf="showDialog">
+    <div class="user-dialog-container">
+      <h2>¡Bienvenido!</h2>
+      <p>Por favor, seleccione una opción:</p>
+      <ul>
+        <li><a href="#" (click)="selectOption('Inicio de Sesión')"><mat-icon>account_circle</mat-icon> Inicio de Sesión</a></li>
+        <li><a href="#" (click)="selectOption('Registrarse')"><mat-icon>person_add</mat-icon> Registrarse</a></li>
+        <li><a href="#" (click)="selectOption('Mi Perfil')"><mat-icon>account_box</mat-icon> Mi Perfil</a></li>
+        <li><a href="#" (click)="selectOption('Cerrar Sesión')"><mat-icon>exit_to_app</mat-icon> Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
