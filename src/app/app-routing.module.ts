@@ -18,16 +18,19 @@ import {LogeoComponent} from "./public/registross/logeo/logeo.component";
 import {RegistroComponent} from "./public/registross/registro/registro.component";
 import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
 import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
+import {CarnesComponent} from "./public/pages/Categorias/carnes/carnes.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-/*{path: 'login', component: LoginComponent},*/
+
 /*{path: 'login', component: LoginComponent},*/
   {path: 'register', component: RegisterClientComponent},
   {path: 'telephone', component: TelephoneComponent},
   {path: 'register-admin', component: RegisterAdminComponent},
   {path: 'home-client', component: KeeperComponent},
+
+  {path: 'carnes', component: CarnesComponent},
   {path: 'find-house', component: FindHouseComponent},
   {path: 'messenger-client', component: MessengerKeeperComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},

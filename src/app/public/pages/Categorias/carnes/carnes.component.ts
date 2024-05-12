@@ -1,10 +1,11 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import { Router } from "@angular/router";
-import { ProductoService } from "../../../services/producto.service";
+import {Component, OnInit} from '@angular/core';
+import {ProductoService} from "../../../services/producto.service";
 import {Producto} from "../../../models/producto.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
+
 
 interface Carrito {
   id: number;
@@ -15,12 +16,13 @@ interface Carrito {
   total : number;
 }
 
+
 @Component({
-  selector: 'app-keeper',
-  templateUrl: './keeper.component.html',
-  styleUrls: ['./keeper.component.css']
+  selector: 'app-carnes',
+  templateUrl: './carnes.component.html',
+  styleUrls: ['./carnes.component.css']
 })
-export class KeeperComponent implements OnInit {
+export class CarnesComponent implements OnInit {
   Productos: Producto[] = [];
   Categorias: any[] = [];
   name: string;
@@ -184,13 +186,13 @@ export class KeeperComponent implements OnInit {
   }
 
   productosComprados() {
-     if(this.contador == 0){
-       alert("No hay ningun producto añadido en el carrito");
+    if(this.contador == 0){
+      alert("No hay ningun producto añadido en el carrito");
 
-     }else{
-       const producto: Producto[] = [];
-       this.abrirCerrarFormularioCarrito();
-     }
+    }else{
+      const producto: Producto[] = [];
+      this.abrirCerrarFormularioCarrito();
+    }
   }
 
 
@@ -205,7 +207,7 @@ export class KeeperComponent implements OnInit {
   }
 
   toReset() {
-     this.name = '';
+    this.name = '';
     if (!this.searching) {
       this.productoService.getAll().subscribe((response: any) => {
         this.Productos = response;
@@ -273,7 +275,7 @@ export class KeeperComponent implements OnInit {
 
   protected readonly Producto = Producto;
 
-  goToKeeper(){
+  goToHome(){
     this.router.navigateByUrl('/home-client');
   }
 
@@ -289,6 +291,5 @@ export class KeeperComponent implements OnInit {
   goToLogin(){
     this.router.navigateByUrl('/login');
   }
-
 
 }

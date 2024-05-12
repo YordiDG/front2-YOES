@@ -47,6 +47,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
+import { CarrucelComponent } from './public/carrucel/carrucel.component';
+import { LacteosComponent } from './public/pages/Categorias/lacteos/lacteos.component';
+import { CarnesComponent } from './public/pages/Categorias/carnes/carnes.component';
+import { VerdurasComponent } from './public/pages/Categorias/verduras/verduras.component';
+import { FrutasComponent } from './public/pages/Categorias/frutas/frutas.component';
+import { PanisteriaComponent } from './public/pages/Categorias/panisteria/panisteria.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +74,13 @@ import {MatRadioModule} from "@angular/material/radio";
     FindKeeperComponent,
     TravelerComponent,
     TelephoneComponent,
-    DialogLogComponent
+    DialogLogComponent,
+    CarrucelComponent,
+    LacteosComponent,
+    CarnesComponent,
+    VerdurasComponent,
+    FrutasComponent,
+    PanisteriaComponent
   ],
   imports: [
     AppRoutingModule,
