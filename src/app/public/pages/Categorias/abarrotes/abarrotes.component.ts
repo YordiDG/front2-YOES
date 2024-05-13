@@ -1,9 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {Router, Routes} from "@angular/router";
-import { ProductoService } from "../../../services/producto.service";
+import {Component, OnInit} from '@angular/core';
+import {ProductoService} from "../../../services/producto.service";
 import {Producto} from "../../../models/producto.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
 
 
@@ -15,21 +15,18 @@ interface Carrito {
   image: String;
   total : number;
 }
-
-
-
 @Component({
-  selector: 'app-keeper',
-  templateUrl: './keeper.component.html',
-  styleUrls: ['./keeper.component.css']
+  selector: 'app-abarrotes',
+  templateUrl: './abarrotes.component.html',
+  styleUrls: ['./abarrotes.component.css']
 })
-export class KeeperComponent implements OnInit {
+export class AbarrotesComponent implements OnInit {
   Productos: Producto[] = [];
   Categorias: any[] = [];
   name: string;
   price: number;
   description: string;
-  category: string;
+  category: String;
   disponibilidad: string;
   cantidad_stock: number;
   valoracion: string;
@@ -46,18 +43,19 @@ export class KeeperComponent implements OnInit {
   isMenuOpen: boolean = false;
   producto: boolean = false;
 
-  currentSlide: number = 0;
+  currentSlide = 0;
 
   slides = [
-    { title: 'Verduras', description: 'Brócoli, rabanito, zanahoria', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239447880758988880/138792896_dcaaded0-20e7-4f47-adb5-91c1d5e35705-removebg-preview.png?ex=6642f54a&is=6641a3ca&hm=74c606fcf9d9c96e7d1f8de35f1f9e557e8001c3f8d30d0fda7bba51897821cb&=&format=webp&quality=lossless&width=388&height=388', category: 'verduras' },
-    { title: 'Carnes', description: 'Cerdo, pescado, pollo,res', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622769410049/93505921_Meat_in_its_raw_state_-16-removebg-preview.png?ex=664188e7&is=66403767&hm=1c31fb515a2336e812980268dc8d1ff4c2956ebf8e34e40a98e88ba777f401d0&=&format=webp&quality=lossless&width=388&height=388', category: 'carnes' },
-    { title: 'Frutas', description: 'Uva, plátano, manzana', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388', category: 'frutas'},
-    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358', category: 'abarrotes' },
-    { title: 'Lácteos', description: 'Queso, yogurt,leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623616659476/productos-lacteos-mesa-madera.png?ex=6642da67&is=664188e7&hm=889c2418eaf1f2ec1a1df9d9ff8e764273cc026e7ecfc4fd490fa42486e7783a&=&format=webp&quality=lossless&width=306&height=311', category: 'lacteos'},
-    { title: 'Panisteria', description: 'Pan, queques, tortas', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622496645130/91630062_Delicious_uzbek_pastries_-11-removebg-preview.png?ex=6642da67&is=664188e7&hm=a1e1aa86febd160627e57ab6dc27b1111f07b06c9537cb825e81bee247fab56c&=&format=webp&quality=lossless&width=388&height=388', category: 'panisteria' },
-    { title: 'Comidas', description: 'Arroz con pollo, Aji de gallina,...', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239451426606809119/ceviche-peruano-removebg-preview.png?ex=6642f897&is=6641a717&hm=56da533ca832eaa06a33453f7761100c2de3388360fc5c35230b22ca920a080f&=&format=webp&quality=lossless&width=419&height=326', category: 'comida' },
+    { title: 'Verduras', description: 'Brócoli, rabanito, limón, zanahoria, cebolla', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239064832632815709/ver.webp?ex=6641908c&is=66403f0c&hm=8c18dc8b261a05da3584d8d5887244eb9bd17bb4991573e6323b69fe2ab04d20&=&format=webp&width=584&height=388' },
+    { title: 'Carnes', description: 'Cerdo, pescado, pollo, pato, res', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622769410049/93505921_Meat_in_its_raw_state_-16-removebg-preview.png?ex=664188e7&is=66403767&hm=1c31fb515a2336e812980268dc8d1ff4c2956ebf8e34e40a98e88ba777f401d0&=&format=webp&quality=lossless&width=388&height=388' },
+    { title: 'Frutas', description: 'Uva, plátano, manzana, naranja, chirimoya', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388' },
+    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite, atún, leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358' },
+    //añadir mas car
+    { title: 'Frutas', description: 'Uva, plátano, manzana, naranja, chirimoya', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388' },
+    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite, atún, leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358' },
   ];
 
+  visibleSlides: any[] = [];
 
   constructor(private router: Router, private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
     this.name = '';
@@ -78,43 +76,28 @@ export class KeeperComponent implements OnInit {
     );
     this.obtenerProductos();
     this.obtenerCategorias();
-
-  }
-
-  isDisponible(producto: Producto): boolean {
-    return producto.cantidad_stock > 0;
+    this.updateVisibleSlides();
   }
   /*Productos de carrucel*/
 
-  verProductosEnCategoria(categoria: string): void {
-    this.router.navigate(['/' + categoria.toLowerCase()]);
+  updateVisibleSlides() {
+    this.visibleSlides = this.slides.slice(this.currentSlide, this.currentSlide + 4);
+  }
+
+  showSlide(index: number) {
+    this.currentSlide = index;
+    this.updateVisibleSlides();
   }
 
   nextSlide() {
-    if (this.currentSlide < this.slides.length - 4) {
-      this.currentSlide += 1;
-    } else {
-      this.currentSlide = 0;
-    }
+    this.currentSlide = (this.currentSlide + 1) % (this.slides.length - 3);
+    this.updateVisibleSlides();
   }
 
   prevSlide() {
-    if (this.currentSlide > 0) {
-      this.currentSlide -= 1;
-    } else {
-      this.currentSlide = this.slides.length - 4;
-    }
+    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % (this.slides.length - 3); // Restamos 3 para que siempre haya al menos 4 elementos visibles
+    this.updateVisibleSlides();
   }
-
-  goToSlide(index: number) {
-    this.currentSlide = index;
-  }
-
-  get visibleSlides() {
-    return this.slides.slice(this.currentSlide, this.currentSlide + 4);
-  }
-
-
   /**/
 
   showUserDialog(): void {
@@ -201,13 +184,13 @@ export class KeeperComponent implements OnInit {
   }
 
   productosComprados() {
-     if(this.contador == 0){
-       alert("No hay ningun producto añadido en el carrito");
+    if(this.contador == 0){
+      alert("No hay ningun producto añadido en el carrito");
 
-     }else{
-       const producto: Producto[] = [];
-       this.abrirCerrarFormularioCarrito();
-     }
+    }else{
+      const producto: Producto[] = [];
+      this.abrirCerrarFormularioCarrito();
+    }
   }
 
 
@@ -222,7 +205,7 @@ export class KeeperComponent implements OnInit {
   }
 
   toReset() {
-     this.name = '';
+    this.name = '';
     if (!this.searching) {
       this.productoService.getAll().subscribe((response: any) => {
         this.Productos = response;
@@ -290,7 +273,7 @@ export class KeeperComponent implements OnInit {
 
   protected readonly Producto = Producto;
 
-  goToKeeper(){
+  goToHome(){
     this.router.navigateByUrl('/home-client');
   }
 
@@ -306,6 +289,5 @@ export class KeeperComponent implements OnInit {
   goToLogin(){
     this.router.navigateByUrl('/login');
   }
-
 
 }

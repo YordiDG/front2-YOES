@@ -111,10 +111,14 @@ h1 {
 }
 
 
-
 .general{
   background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);
   margin-top: 6%;
+
+}
+container-c{
+  width: 100%;
+  height: auto;
 }
 
 .examples-cards {

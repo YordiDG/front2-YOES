@@ -53,6 +53,8 @@ import { CarnesComponent } from './public/pages/Categorias/carnes/carnes.compone
 import { VerdurasComponent } from './public/pages/Categorias/verduras/verduras.component';
 import { FrutasComponent } from './public/pages/Categorias/frutas/frutas.component';
 import { PanisteriaComponent } from './public/pages/Categorias/panisteria/panisteria.component';
+import { AbarrotesComponent } from './public/pages/Categorias/abarrotes/abarrotes.component';
+import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { PanisteriaComponent } from './public/pages/Categorias/panisteria/panist
     CarnesComponent,
     VerdurasComponent,
     FrutasComponent,
-    PanisteriaComponent
+    PanisteriaComponent,
+    AbarrotesComponent,
+    ComidasComponent
   ],
   imports: [
     AppRoutingModule,

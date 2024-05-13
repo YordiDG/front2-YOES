@@ -14,23 +14,32 @@ import {ProfileTravelerComponent} from "./public/pages/main-content-traveler/pro
 import {SigninComponent} from "./public/pages/signin/signin.component";
 import {RegisterClientComponent} from "./public/pages/register-user/register-client/register-client.component";
 import {RegisterAdminComponent} from "./public/pages/register-user/register-admin/register-admin.component";
-import {LogeoComponent} from "./public/registross/logeo/logeo.component";
-import {RegistroComponent} from "./public/registross/registro/registro.component";
 import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
-import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
 import {CarnesComponent} from "./public/pages/Categorias/carnes/carnes.component";
+import {VerdurasComponent} from "./public/pages/Categorias/verduras/verduras.component";
+import {FrutasComponent} from "./public/pages/Categorias/frutas/frutas.component";
+import {LacteosComponent} from "./public/pages/Categorias/lacteos/lacteos.component";
+import {PanisteriaComponent} from "./public/pages/Categorias/panisteria/panisteria.component";
+import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.component";
+import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
-/*{path: 'login', component: LoginComponent},*/
   {path: 'register', component: RegisterClientComponent},
   {path: 'telephone', component: TelephoneComponent},
   {path: 'register-admin', component: RegisterAdminComponent},
   {path: 'home-client', component: KeeperComponent},
 
+  {path: 'verduras', component: VerdurasComponent},
   {path: 'carnes', component: CarnesComponent},
+  {path: 'frutas', component: FrutasComponent},
+  {path: 'abarrotes', component: AbarrotesComponent},
+  {path: 'lacteos', component: LacteosComponent},
+  {path: 'panisteria', component: PanisteriaComponent},
+  {path: 'comida', component: ComidasComponent},
+
   {path: 'find-house', component: FindHouseComponent},
   {path: 'messenger-client', component: MessengerKeeperComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},
