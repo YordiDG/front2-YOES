@@ -241,13 +241,13 @@ button.purple-button:focus {
 
 
 .example-data {
-  width: 360px;
-  height: 445px; /* Alto estándar */
-  margin: 10px;
+  width: 320px;
+  height: 445px;
+  margin: 18px;
   background-color: rgb(255, 255, 255);
   color: #000000; /* Letras blancas */
   border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Sombra */
+  box-shadow: 0 0 10px rgb(37, 231, 14); /* Sombra */
   display: flex;
   flex-direction: column;
   justify-content: center;
