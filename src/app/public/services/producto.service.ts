@@ -26,7 +26,7 @@ export class ProductoService extends BaseService<Casas>{
     return this.http.post<any>('http://localhost:8080/api/minimarket/categorias/new-category', obj);
   }
 
-  getProductsByCategory(category: string): Observable<any[]> {
+  getProductsByCategory(catregory: string): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8080/api/v1/product/all-product');
   }
 
@@ -35,16 +35,17 @@ export class ProductoService extends BaseService<Casas>{
   }
 
   getProductById(productId: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/v1/product/${productId}`);
+    return this.http.get<any[]>('http://localhost:8080/api/v1/product/{id}');
   }
 
-  // Modifica el método para que envíe una solicitud PUT
-  updateProduct(id: number, obj: any): Observable<any> {
-    return this.http.put<any>(`http://localhost:8080/api/v1/product/${id}/update`, obj);
+
+
+  updateProduct(obj: any): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/v1/product/{id}/update', obj);
   }
 
   deleteProduct(id: any): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/v1/product/${id}/delete`);
+    return this.http.get<any[]>('http://localhost:8080/api/v1/product/{id}/delete');
   }
 
   /*  addToCart(obj: any): Observable<any> {
