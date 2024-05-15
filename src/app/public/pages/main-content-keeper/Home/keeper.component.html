@@ -182,7 +182,8 @@
                 <h2>{{ productoSeleccionado.name }}</h2>
                 <p
                   style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
-                <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+                <p
+                  style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
                 <p
                   style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
                 <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
@@ -220,7 +221,8 @@
                 <h2>{{ productoSeleccionado.name }}</h2>
                 <p
                   style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
-                <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+                <p
+                  style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
                 <p
                   style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
                 <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
@@ -259,10 +261,10 @@
     <!-- Formulario de lista de productos en el carrito -->
     <div class="formulario-carrito" *ngIf="mostrarFormularioCarrito">
       <div style="display: flex; align-items: center; padding: 10px;">
-        <button mat-button class="cerrar-button" style="margin-left: 5%;" (click)="cerrarFormularioCarrito()"><strong>
-          <mat-icon>clear</mat-icon>
-        </strong></button>
-        <h2 style="font-weight: bold; ">Productos Añadidos</h2>
+        <button mat-button class="cerrar-button" style="margin-left: 5%;" (click)="cerrarFormularioCarrito()">
+          <strong><mat-icon>clear</mat-icon></strong>
+        </button>
+        <h2 style="font-weight: bold;">Productos Añadidos</h2>
       </div>
       <hr>
       <ul class="lista-productos" style="max-height: 550px; overflow-y: auto;">
@@ -272,7 +274,7 @@
             <img [src]="producto.image" alt="{{ producto.name }}" width="70" height="70">
             <div class="info-producto" style="font-family: 'Montserrat', sans-serif; font-size: 19px">
               <span><strong>{{ producto.name }}</strong></span> <br>
-              <span>Precio: <strong> {{ producto.price }}</strong></span> <br>
+              <span>Precio: <strong>{{ producto.price }}</strong></span> <br>
               <span>Cantidad añadida: <strong>{{ cantidadAnadida(producto.id) }}</strong></span>
             </div>
             <button mat-icon-button class="delete-button" (click)="removerDelCarrito(i)">
@@ -283,24 +285,22 @@
       </ul>
       <!-- Mensaje cuando no hay productos en el carrito -->
       <div *ngIf="carrito.length === 0" style="padding: 10px; text-align: center; align-items: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket-off" style="margin-top: 35%"
-             width="130" height="130" viewBox="0 0 24 24" stroke-width="1" stroke="#9e9e9e" fill="none"
-             stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket-off" style="margin-top: 35%" width="130" height="130" viewBox="0 0 24 24" stroke-width="1" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M17 10l-2 -6"/>
           <path d="M7 10l.75 -2.252m1.001 -3.002l.249 -.746"/>
-          <path
-            d="M12 8h7a2 2 0 0 1 1.977 2.304c-.442 2.516 -.756 4.438 -.977 5.696m-1.01 3.003a2.997 2.997 0 0 1 -2.234 .997h-9.512a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h2.999"/>
+          <path d="M12 8h7a2 2 0 0 1 1.977 2.304c-.442 2.516 -.756 4.438 -.977 5.696m-1.01 3.003a2.997 2.997 0 0 1 -2.234 .997h-9.512a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h2.999"/>
           <path d="M12 12a2 2 0 1 0 2 2"/>
           <path d="M3 3l18 18"/>
         </svg>
-        <h3 style="color: #a1a7af; font-size: 27px; margin-top: 5%; margin-bottom: 150px"><strong>Su carrito está
-          vacío!</strong></h3>
+        <h3 style="color: #a1a7af; font-size: 27px; margin-top: 5%; margin-bottom: 150px"><strong>Su carrito está vacío!</strong></h3>
       </div>
       <hr>
       <p style="font-size: 20px; font-weight: bold; padding: 10px;">Total: {{ totalCarrito | number:'.2-2' }}</p>
+      <a class="link-pago" routerLink="/card">Ir a Pagar</a>
     </div>
   </div>
+
 
   <!-- Contenedor filtros -->
   <div class="examples-cards">
@@ -317,7 +317,6 @@
             [ngStyle]="{'background-color': producto.disponibilidad === 'agotado' ? 'red' : 'green', 'color': producto.disponibilidad === 'agotado' ? 'white' : 'white'}">
             {{ producto.disponibilidad === 'agotado' ? 'Agotado' : 'Disponible' }}
           </div>
-
 
           <!-- Botones dentro del mismo *ngIf que el detalle del producto -->
           <div *ngIf="producto.mostrarDetalle">
@@ -341,45 +340,43 @@
       <p style="font-size: 30px; width: 130%; margin-left: 7%; font-weight: bold; margin-top: 50%">No se encontró ningún
         <br><br>producto con ese nombre!🥹</p>
     </div>
-
-
-    <!--Para ver los productos seleccionados-->
-    <div class="detalle-overlay" *ngIf="productoSeleccionado">
-      <div class="detalle-producto">
-        <h2
-          style="background-color: #0cca98; text-align: center;align-items: center; border-radius: 10px; color: white; width: 50%; margin: 10px; padding: 10px">
-          Detalle del producto</h2>
-        <div style="display: flex; align-items: center;">
-          <img [src]="productoSeleccionado.image" alt="Image of product" width="220px">
-          <div style="margin-left: 20px;">
-            <h2>{{ productoSeleccionado.name }}</h2>
-            <p style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
-            <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
-            <p
-              style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
-            <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
-              S/. {{ productoSeleccionado.price }}</p>
-            <label>{{ productoSeleccionado.valoracion }}</label><
-            <div class="button-container">
-              <button class="btnss" mat-button style="background-color: #046981; color: white; font-weight: bold;"
-                      (click)="agregarAlCarrito(productoSeleccionado)">
-                <mat-icon>add_shopping_cart</mat-icon>
-                ADD
-              </button>
-              <button class="btnss" mat-button style="background-color: #ff0000; color: white; font-weight: bold;"
-                      (click)="cerrarDetalle()">Close
-              </button>
-            </div>
+  </div>
+  <!--Para ver los productos seleccionados-->
+  <div class="detalle-overlay" *ngIf="productoSeleccionado">
+    <div class="detalle-producto">
+      <h2
+        style="background-color: #0cca98; text-align: center;align-items: center; border-radius: 10px; color: white; width: 50%; margin: 10px; padding: 10px">
+        Detalle del producto</h2>
+      <div style="display: flex; align-items: center;">
+        <img [src]="productoSeleccionado.image" alt="Image of product" width="220px">
+        <div style="margin-left: 20px;">
+          <h2>{{ productoSeleccionado.name }}</h2>
+          <p style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
+          <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+          <p
+            style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
+          <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
+            S/. {{ productoSeleccionado.price }}</p>
+          <label>{{ productoSeleccionado.valoracion }}</label><
+          <div class="button-container">
+            <button class="btnss" mat-button style="background-color: #046981; color: white; font-weight: bold;"
+                    (click)="agregarAlCarrito(productoSeleccionado)">
+              <mat-icon>add_shopping_cart</mat-icon>
+              ADD
+            </button>
+            <button class="btnss" mat-button style="background-color: #ff0000; color: white; font-weight: bold;"
+                    (click)="cerrarDetalle()">Close
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="mensaje-limite" *ngIf="mostrarMensaje">
-      <p>¡Se ha alcanzado el límite de compras en este producto!</p>
-      <button (click)="cerrarMensaje()">Cerrar</button>
-    </div>
-
   </div>
+  <div class="mensaje-limite" *ngIf="mostrarMensaje">
+    <p>¡Se ha alcanzado el límite de compras en este producto!</p>
+    <button (click)="cerrarMensaje()">Cerrar</button>
+  </div>
+
 </div>
 
 

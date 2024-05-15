@@ -4,7 +4,6 @@ import { ProductoService } from "../../../services/producto.service";
 import {Producto} from "../../../models/producto.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
 
 
 interface Carrito {
@@ -15,8 +14,6 @@ interface Carrito {
   image: String;
   total : number;
 }
-
-
 
 @Component({
   selector: 'app-keeper',
@@ -34,10 +31,11 @@ export class KeeperComponent implements OnInit {
   cantidad_stock: number;
   valoracion: string;
   contador: number = 0;
+  cantidad:number;
   carrito: Carrito[] = [];
   productoSeleccionado: any;
-  totalCarrito: number = 0;
   mostrarMensaje: boolean = false;
+  totalCarrito: number = 0;
   mostrarFormularioCarrito: boolean = false;
   searching: boolean = false;
   productosFiltrados: Producto[] = [];
@@ -67,6 +65,7 @@ export class KeeperComponent implements OnInit {
     this.disponibilidad = '';
     this.cantidad_stock = 0;
     this.valoracion = '';
+    this.cantidad=0;
   }
 
   ngOnInit() {
@@ -80,6 +79,89 @@ export class KeeperComponent implements OnInit {
     this.obtenerCategorias();
 
   }
+
+  /*-----------*/
+  /*********** seccion de compras ****************/
+  incrementarContador() {
+    this.contador++;
+    this.snackBar.open('Producto añadido', 'Cerrar', {
+      duration: 2000,
+    });
+  }
+
+  agregarAlCarrito(producto: Producto) {
+    const precioTotalProducto = producto.price;
+
+    // Verificar si agregar este producto excede el límite de compra total
+    if ((this.totalCarrito + precioTotalProducto) > 700) {
+      this.mostrarMensaje = true; // Mostrar mensaje de límite de compra total alcanzado
+      return;
+    }
+
+    // Verificar si el producto ya está en el carrito
+    const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
+
+    if (productoEnCarrito) {
+      // Verificar si se ha alcanzado el límite de 5 unidades para este producto
+      if (productoEnCarrito.cantidad < 5) {
+        productoEnCarrito.cantidad++;
+        productoEnCarrito.total += precioTotalProducto; // Actualizar el precio total del producto en el carrito
+      } else {
+        this.mostrarMensaje = true; // Mostrar mensaje de límite alcanzado para este producto
+        return;
+      }
+    } else {
+      // Si el producto no está en el carrito, agregarlo con una cantidad de 1
+      this.carrito.push({...producto, cantidad: 1, total: precioTotalProducto});
+    }
+
+    // Actualizar el precio total del carrito sumando los precios totales de todos los productos
+    this.actualizarTotalCarrito(); // Función para actualizar el total del carrito
+    this.incrementarContador();
+  }
+
+  actualizarTotalCarrito() {
+    this.totalCarrito = this.carrito.reduce((total, item) => total + item.total, 0);
+  }
+
+
+
+  removerDelCarrito(index: number) {
+    const producto = this.carrito[index];
+    // Restar el precio total del producto eliminado
+    this.totalCarrito -= producto.price * producto.cantidad;
+    this.carrito.splice(index, 1); // Eliminar el producto del carrito
+    this.contador -= producto.cantidad; // Restar la cantidad del producto eliminado del contador
+
+    if (this.carrito.length === 0) {
+      this.contador = 0; // Si el carrito está vacío, reiniciar el contador a cero
+    }
+
+    // Actualizar el precio total del carrito
+    this.actualizarTotalCarrito(); // Llamar a la función para actualizar el total del carrito
+  }
+
+
+  cantidadAnadida(productId: number): number {
+    let cantidadTotal = 0;
+    for (const item of this.carrito) {
+      if (item.id === productId) {
+        cantidadTotal += item.cantidad;
+      }
+    }
+    return cantidadTotal;
+  }
+
+  productosComprados() {
+    if (this.contador === 0) {
+      alert("No hay ningún producto añadido en el carrito");
+    } else {
+      this.abrirCerrarFormularioCarrito();
+    }
+  }
+
+
+  /*****************************/
 
   isDisponible(producto: Producto): boolean {
     return producto.cantidad_stock > 0;
@@ -115,7 +197,7 @@ export class KeeperComponent implements OnInit {
   }
 
 
-  /**/
+  /*este es el fomr de login*/
 
   showUserDialog(): void {
     this.showDialog = true;
@@ -156,60 +238,10 @@ export class KeeperComponent implements OnInit {
     this.categoriaSeleccionada = categoria;
     this.productosFiltrados = this.Productos.filter(producto => producto.category.toLowerCase() === categoria.toLowerCase());
   }
-  /*-----------*/
-
-  cantidadAnadida(productId: number): number {
-    return this.carrito.filter(item => item.id === productId).reduce((total, item) => total + item.cantidad, 0);
-  }
-
-  incrementarContador() {
-    this.contador++;
-    this.snackBar.open('Producto añadido', 'Cerrar', {
-      duration: 2000,
-    });
-  }
-
-
-  isTarjetaActiva(producto: any): boolean {
-    return this.productoSeleccionado === producto;
-  }
-
-  agregarAlCarrito(producto: Producto) {
-    const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
-    if (productoEnCarrito) {
-      if (productoEnCarrito.cantidad < 5) {
-        productoEnCarrito.cantidad++;
-        this.totalCarrito += producto.price;
-        this.incrementarContador();
-      } else {
-        this.mostrarMensaje;
-      }
-    } else {
-      if ((this.totalCarrito + producto.price) <= 700) {
-        this.carrito.push({...producto, cantidad: 1, total:0});
-        this.totalCarrito += producto.price;
-        this.incrementarContador();
-      } else {
-        this.mostrarMensaje;
-      }
-    }
-  }
-
 
   verDetalle(producto: any) {
     this.productoSeleccionado = producto;
   }
-
-  productosComprados() {
-     if(this.contador == 0){
-       alert("No hay ningun producto añadido en el carrito");
-
-     }else{
-       const producto: Producto[] = [];
-       this.abrirCerrarFormularioCarrito();
-     }
-  }
-
 
   onFilter() {
     this.searching = true; // Marca que la búsqueda está en curso
@@ -244,19 +276,6 @@ export class KeeperComponent implements OnInit {
   }
 
 
-  abrirFormularioCarrito() {
-    this.mostrarFormularioCarrito = true;
-  }
-  removerDelCarrito(index: number) {
-    const producto = this.carrito[index];
-    this.totalCarrito -= producto.price * producto.cantidad;
-    this.carrito.splice(index, 1);
-
-    if (this.carrito.length === 0) {
-      this.contador = 0;
-    }
-  }
-
   cerrarMensaje() {
     this.mostrarMensaje = false;
   }
@@ -270,11 +289,6 @@ export class KeeperComponent implements OnInit {
     return this.Productos.length === 0 || this.Productos.includes(producto);
   }
 
-  openUserDialog(): void {
-    const dialogRef = this.dialog.open(DialogLogComponent, {
-      width: '300px'
-    });
-  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -306,6 +320,5 @@ export class KeeperComponent implements OnInit {
   goToLogin(){
     this.router.navigateByUrl('/login');
   }
-
 
 }

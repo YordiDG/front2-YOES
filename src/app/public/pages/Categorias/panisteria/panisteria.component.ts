@@ -4,7 +4,7 @@ import {Producto} from "../../../models/producto.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
+
 
 
 interface Carrito {
@@ -255,11 +255,6 @@ export class PanisteriaComponent implements OnInit {
     return this.Productos.length === 0 || this.Productos.includes(producto);
   }
 
-  openUserDialog(): void {
-    const dialogRef = this.dialog.open(DialogLogComponent, {
-      width: '300px'
-    });
-  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;

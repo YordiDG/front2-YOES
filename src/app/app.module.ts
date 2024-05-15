@@ -44,7 +44,6 @@ import { LogeoComponent } from './public/registross/logeo/logeo.component';
 import { RegistroComponent } from './public/registross/registro/registro.component';
 import { TelephoneComponent } from './public/registross/telephone/telephone.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import { CarrucelComponent } from './public/carrucel/carrucel.component';
@@ -55,6 +54,7 @@ import { FrutasComponent } from './public/pages/Categorias/frutas/frutas.compone
 import { PanisteriaComponent } from './public/pages/Categorias/panisteria/panisteria.component';
 import { AbarrotesComponent } from './public/pages/Categorias/abarrotes/abarrotes.component';
 import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.component';
+import { CardComponent } from './public/pages/main-content-keeper/card/card.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,6 @@ import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.comp
     FindKeeperComponent,
     TravelerComponent,
     TelephoneComponent,
-    DialogLogComponent,
     CarrucelComponent,
     LacteosComponent,
     CarnesComponent,
@@ -84,7 +83,8 @@ import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.comp
     FrutasComponent,
     PanisteriaComponent,
     AbarrotesComponent,
-    ComidasComponent
+    ComidasComponent,
+    CardComponent
   ],
   imports: [
     AppRoutingModule,
